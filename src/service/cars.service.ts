@@ -1,13 +1,13 @@
 import { Cars } from "@prisma/client"
-import { carsSchema } from "../schemas/cars.schemas"
+import { carsSchema, returnCarSchema } from "../schemas/cars.schemas"
 import { prisma } from "../database/prisma"
-import { CreateCar, UpdateCar } from "../interface/cars.interface"
+import { CreateCar, ReturnCar, UpdateCar } from "../interface/cars.interface"
 
 export class CarService {
 
-    create = async (body: CreateCar): Promise<Cars> => {
+    create = async (body: CreateCar): Promise<ReturnCar> => {
         const newCar = await prisma.cars.create({ data: body });
-        return carsSchema.parse(newCar)
+        return returnCarSchema.parse(newCar)
     }
 
     readMany = async (): Promise<Cars[]> => {

@@ -13,3 +13,4 @@ export const carsSchema = z.object({
 
 export const createCarSchema = carsSchema.omit({id: true});
 export const updateCarSchema = createCarSchema.partial();
+export const returnCarSchema = carsSchema;

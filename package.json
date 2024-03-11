@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "dotenv -e .env -- tsnd --respawn --cls src/server.ts",
+    "dev": "dotenv -e .env.dev -- tsnd --respawn --cls src/server.ts",
     "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev"
   },
