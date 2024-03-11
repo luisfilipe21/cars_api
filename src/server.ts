@@ -3,5 +3,5 @@ import { app } from "./app";
 const port = 3000;
 
 app.listen(port, () => {
-    console.log(`API successfully started at port ${port}.` )
+    console.log(`API successfully started at port ${port}.`)
 })
