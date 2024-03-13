@@ -6,7 +6,7 @@ import { CreateCar, ReturnCar, UpdateCar } from "../interface/cars.interface"
 export class CarService {
 
     create = async (body: CreateCar): Promise<ReturnCar> => {
-        const newCar = await prisma.cars.create({ data: body });
+        const newCar =await prisma.cars.create({ data: body });
         return returnCarSchema.parse(newCar)
     }
 
@@ -19,11 +19,11 @@ export class CarService {
     }
 
     update = async (body: UpdateCar, id: number): Promise<CreateCar> => {
-        const updatedBody = await prisma.cars.update({ where: {id}, data: {...body}})
-        return carsSchema.parse(updatedBody) 
+        const updatedBody = await prisma.cars.update({ where: { id }, data: { ...body } })
+        return carsSchema.parse(updatedBody)
     }
 
-    delete = async(id:number): Promise<void> => {
-        await prisma.cars.delete({ where: {id}});
+    delete = async (id: number): Promise<void> => {
+        await prisma.cars.delete({ where: { id } });
     }
 }

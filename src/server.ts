@@ -1,7 +1,7 @@
 import { app } from "./app";
 
-const port = 3000;
+const PORT = 3000;
 
-app.listen(port, () => {
-    console.log(`API successfully started at port ${port}.`)
+app.listen(PORT, () => {
+    console.log(`API successfully started at port ${PORT}.`)
 })

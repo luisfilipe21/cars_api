@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const carsSchema = z.object({
-    id: z.number().positive(),
+    id: z.string(),
     name: z.string().min(1),
     description: z.string().nullable(),
     brand: z.string().min(2),
-    year: z.number().positive().min(2),
+    year: z.number().positive().gt(1950),
     km: z.number().positive().min(1)
 })
 

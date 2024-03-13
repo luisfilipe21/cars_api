@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import { AppError } from "../errors/AppError";
 
-export class handleErrors {
+export class HandleErrors {
     execute = (error: Error, req: Request, res: Response, next: NextFunction): Response => {
         if (error instanceof AppError) {
             return res.status(error.statusCode).json({ message: error.message });
