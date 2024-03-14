@@ -1,5 +1,5 @@
 import { prisma } from "../../../database/prisma";
-import { carMock } from "../../mocks/cars.mock";
+import { carMockCreate } from "../../mocks/cars.mock";
 import { request } from "../uteis"
 
 describe("Integration Tests: Create Car Route", () => {
@@ -16,15 +16,15 @@ describe("Integration Tests: Create Car Route", () => {
 
 
     test("Should be able to create a car.", async () => {
-        const req = await request.post(baseUrl).send(carMock);
+        const req = await request.post(baseUrl).send(carMockCreate);
 
         const expectedValue = {
             id: expect.any(String),
-            name: carMock.name,
-            description: carMock.description,
-            brand: carMock.brand,
-            year: carMock.year,
-            km: carMock.km
+            name: carMockCreate.name,
+            description: carMockCreate.description,
+            brand: carMockCreate.brand,
+            year: carMockCreate.year,
+            km: carMockCreate.km
         }
 
         expect(req.body).toStrictEqual(expectedValue)

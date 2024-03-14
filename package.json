@@ -7,8 +7,8 @@
     "dev": "dotenv -e .env.dev -- tsnd --respawn --cls src/server.ts",
     "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
-    "test:unit": "dotenv -e .env.test -- jest --config jest.config.units.ts --verbose --runInBand",
-    "test:integration": "dotenv -e .env.test -- jest --config jest.config.integration.ts --verbose --runInBand"
+    "test:units": "dotenv -e .env.test -- jest --config jest.config.units.ts --verbose --runInBand",
+    "test:integrations": "dotenv -e .env.test -- jest --config jest.config.integration.ts --verbose --runInBand"
   },
   "keywords": [],
   "author": "",
