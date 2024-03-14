@@ -14,16 +14,16 @@ export class CarService {
         return await prisma.cars.findMany();
     }
 
-    readOne = async (id: number) => {
-        return await prisma.cars.findUnique({ where: { id } })
+    readOne = async (index: string) => {
+        return await prisma.cars.findUnique({ where: { id: index } })
     }
 
-    update = async (body: UpdateCar, id: number): Promise<CreateCar> => {
-        const updatedBody = await prisma.cars.update({ where: { id }, data: { ...body } })
+    update = async (body: UpdateCar, index: string): Promise<CreateCar> => {
+        const updatedBody = await prisma.cars.update({ where: { id: index }, data: { ...body } })
         return carsSchema.parse(updatedBody)
     }
 
-    delete = async (id: number): Promise<void> => {
-        await prisma.cars.delete({ where: { id } });
+    delete = async (index: string): Promise<void> => {
+        await prisma.cars.delete({ where: { id: index } });
     }
 }

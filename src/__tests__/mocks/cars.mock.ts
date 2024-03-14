@@ -1,8 +1,8 @@
 
 export const carMock = {
-    name: "Luis",
-    description: "old",
-    brand: "name",
-    year: 2000,
-    km: 140000
+    name: "Car name",
+    description: "Car description",
+    brand: "Card brand",
+    year: 2023,
+    km: 10000
 }

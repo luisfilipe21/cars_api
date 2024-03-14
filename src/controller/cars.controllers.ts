@@ -10,7 +10,7 @@ export class CarsController {
     }
 
     readOne = async (req: Request, res: Response): Promise<Response> => {
-        const car = await this.carService.readOne(Number(req.params.id));
+        const car = await this.carService.readOne(req.params.id);
         return res.status(200).json(car);
     }
 
@@ -20,12 +20,12 @@ export class CarsController {
     }
 
     update = async (req: Request, res: Response): Promise<Response> =>{
-        const updatedCar = await this.carService.update(req.body, Number(req.params.id));
+        const updatedCar = await this.carService.update(req.body, req.params.id);
         return res.status(200).json(updatedCar)
     }
 
     delete = async (req: Request, res: Response): Promise<Response> =>{
-        await this.carService.delete(Number(req.params.id));
+        await this.carService.delete(req.params.id);
         return res.status(204).json();
     }
 }

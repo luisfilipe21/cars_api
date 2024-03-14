@@ -1,15 +1,90 @@
+import { prisma } from "../../../database/prisma";
 import { carMock } from "../../mocks/cars.mock";
 import { request } from "../uteis"
 
 describe("Integration Tests: Create Car Route", () => {
-    const baseUrl = "/cars"
+    const baseUrl = "/cars";
+    const carsDb = prisma.cars;
+
+    beforeEach(async () => {
+        await carsDb.deleteMany();
+    })
+    beforeAll(async () => {
+        await carsDb.deleteMany();
+    })
+
+
 
     test("Should be able to create a car.", async () => {
-        const response = await request.post(baseUrl).send(carMock);
+        const req = await request.post(baseUrl).send(carMock);
 
-        console.log(response.body);
-        console.log(response.status);
+        const expectedValue = {
+            id: expect.any(String),
+            name: carMock.name,
+            description: carMock.description,
+            brand: carMock.brand,
+            year: carMock.year,
+            km: carMock.km
+        }
 
-        expect(response.status).toBe(201);
+        expect(req.body).toStrictEqual(expectedValue)
+        expect(req.status).toBe(201);
+    })
+
+    test("Should not be able to create card - Invalid Body.", async () => {
+        const req = await request.post(baseUrl).send();
+
+        const expectedValue = {
+            "message": [
+                {
+                    "code": "invalid_type",
+                    "expected": "string",
+                    "message": "Required",
+                    "path": [
+                        "name",
+                    ],
+                    "received": "undefined",
+                },
+                {
+                    "code": "invalid_type",
+                    "expected": "string",
+                    "message": "Required",
+                    "path": [
+                        "description",
+                    ],
+                    "received": "undefined",
+                },
+                {
+                    "code": "invalid_type",
+                    "expected": "string",
+                    "message": "Required",
+                    "path": [
+                        "brand",
+                    ],
+                    "received": "undefined",
+                },
+                {
+                    "code": "invalid_type",
+                    "expected": "number",
+                    "message": "Required",
+                    "path": [
+                        "year",
+                    ],
+                    "received": "undefined",
+                },
+                {
+                    "code": "invalid_type",
+                    "expected": "number",
+                    "message": "Required",
+                    "path": [
+                        "km",
+                    ],
+                    "received": "undefined",
+                },
+            ],
+        }
+
+        expect(req.body).toStrictEqual(expectedValue)
+        expect(req.status).toBe(400);
     })
 })
