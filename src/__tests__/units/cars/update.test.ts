@@ -1,4 +1,3 @@
-import { prisma } from "../../../database/prisma";
 import { CarService } from "../../../service/cars.service";
 import { carMockBody, carMockUpdate } from "../../mocks/cars.mock";
 import { prismaMock } from "../../mocks/prisma";

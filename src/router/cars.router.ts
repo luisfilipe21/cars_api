@@ -11,6 +11,8 @@ const validate = new ValidateBody()
 carRouter.post("/", validate.execute(createCarSchema), controller.create);
 carRouter.get("/", controller.readMany);
 
+carRouter.use("/:id", validate.isIdValid);
+
 carRouter.get("/:id", controller.readOne);
 carRouter.patch("/:id", validate.execute(updateCarSchema), controller.update);
 carRouter.delete("/:id", controller.delete);
